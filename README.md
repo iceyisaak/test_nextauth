@@ -1,4 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS Firebase
+
+NextJS + Firebase:
+
+Modules
+
+- Authentication
+- Cloud Firestore
+- Realtime Database
+- Database
+- Storage
+- Firebase Quries
+- Firebase Hosting
+
 
 ## Getting Started
 
