@@ -5,7 +5,11 @@ import { useAuth } from '../../contexts/FirebaseAuthContext';
 
 const SignInWithSocialMedia = () => {
 
-  const { signInWithGoogle, signInWithFacebook } = useAuth();
+  const {
+    signInWithGoogle,
+    signInWithFacebook,
+    signInWithGithub
+  } = useAuth();
   const router = useRouter();
 
   const handleSignInWithGoogle = async (e) => {
@@ -28,6 +32,16 @@ const SignInWithSocialMedia = () => {
     }
   };
 
+  const handleSignInWithGithub = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithGithub();
+      router.push('/dashboard/Dashboard');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
 
 
   return (
@@ -35,8 +49,8 @@ const SignInWithSocialMedia = () => {
       <h3>Sign In with Social Media</h3>
       <button onClick={handleSignInWithGoogle}>Google</button>
       <button onClick={handleSignInWithFacebook}>Facebook</button>
-      <button>Twitter</button>
-      <button>Github</button>
+      <button >Twitter</button>
+      <button onClick={handleSignInWithGithub}>Github</button>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import {
   signOut,
   GoogleAuthProvider,
   FacebookAuthProvider,
+  GithubAuthProvider,
   signInWithPopup,
   sendPasswordResetEmail,
   confirmPasswordReset
@@ -64,6 +65,11 @@ export const FirebaseAuthContextProvider = ({ children }) => {
     return signInWithPopup(auth, facebookAuthProvider);
   };
 
+  const signInWithGithub = () => {
+    const githubAuthProvider = new GithubAuthProvider();
+    return signInWithPopup(auth, githubAuthProvider);
+  };
+
   const requestPasswordReset = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
@@ -71,6 +77,7 @@ export const FirebaseAuthContextProvider = ({ children }) => {
   const resetPassword = (oobCode, newPassword) => {
     return confirmPasswordReset(auth, oobCode, newPassword);
   };
+
 
 
   return (
@@ -81,6 +88,7 @@ export const FirebaseAuthContextProvider = ({ children }) => {
       logout,
       signInWithGoogle,
       signInWithFacebook,
+      signInWithGithub,
       requestPasswordReset,
       resetPassword
     }}>
