@@ -12,12 +12,7 @@ Modules
   - Sign Up
   - Forgot Password
   
-- Cloud Firestore
-- Realtime Database
-- Database
-- Storage
-- Firebase Quries
-- Firebase Hosting
+
 
 
 ## Getting Started
