@@ -49,7 +49,6 @@ const SignInWithSocialMedia = () => {
       <h3>Sign In with Social Media</h3>
       <button onClick={handleSignInWithGoogle}>Google</button>
       <button onClick={handleSignInWithFacebook}>Facebook</button>
-      <button >Twitter</button>
       <button onClick={handleSignInWithGithub}>Github</button>
     </div>
   );

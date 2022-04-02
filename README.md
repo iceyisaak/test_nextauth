@@ -5,6 +5,13 @@ NextJS + Firebase:
 Modules
 
 - Authentication
+  - Sign In
+    - With Email & Password
+    - With Social Media
+  - Sign Out
+  - Sign Up
+  - Forgot Password
+  
 - Cloud Firestore
 - Realtime Database
 - Database
