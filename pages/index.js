@@ -21,7 +21,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Testing NextJS with Firebase Authentication
+          Testing NextAuth
         </p>
 
         <div className={styles.grid}>
