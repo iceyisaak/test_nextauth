@@ -1,10 +1,12 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useSession, signIn, signOut } from "next-auth/react";
 import styles from '../styles/Home.module.scss';
 
 export default function Home() {
 
+  const { data: session } = useSession();
   const router = useRouter();
 
   return (
@@ -24,13 +26,32 @@ export default function Home() {
           Testing NextAuth
         </p>
 
-        <div className={styles.grid}>
-          <button onClick={() => router.push('login/Login')}>
+        <div>
+          {
+            session ?
+              <>
+                <p>
+                  Signed in as {session.user.email}
+                </p>
+                <br />
+                <button onClick={() => signOut()}>Sign out</button>
+              </> :
+              <>
+                <p>
+                  Not signed in
+                </p>
+                <br />
+                <button onClick={() => signIn()}>Sign in</button>
+              </>
+          }
+
+          {/* <button onClick={() => router.push('login/Login')}>
             Login
           </button>
           <button onClick={() => router.push('signup/SignUp')}>
             Sign Up
-          </button>
+          </button> */}
+
         </div>
       </main>
 
