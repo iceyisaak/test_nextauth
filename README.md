@@ -1,6 +1,6 @@
-# NextJS Firebase
+# Test NextAuth
 
-NextJS + Firebase:
+NextAuth v4:
 
 Modules
 
