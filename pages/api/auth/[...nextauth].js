@@ -1,39 +1,11 @@
 import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/email";
-// import { firebaseAdapter } from "../../../authAdapters/firebaseAdapter";
-import { FirebaseAdapter } from "@next-auth/firebase-adapter";
-import {
-  db,
-  collection,
-  query,
-  getDocs,
-  where,
-  limit,
-  doc,
-  getDoc,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  runTransaction
-} from '../../../firebase.config';
-
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import clientPromise from "../lib/mongodb";
 
 export default NextAuth({
 
-  adapter: FirebaseAdapter({
-    db,
-    collection,
-    query,
-    getDocs,
-    where,
-    limit,
-    doc,
-    getDoc,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    runTransaction
-  }),
+  adapter: MongoDBAdapter(clientPromise),
   providers: [
     // Sign in With Email
     EmailProvider({
