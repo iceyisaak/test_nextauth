@@ -2,6 +2,10 @@ import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import GitHubProvider from "next-auth/providers/github";
+// import TwitterProvider from "next-auth/providers/twitter";
+import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
+import Auth0Provider from "next-auth/providers/auth0";
 import clientPromise from "../lib/mongodb";
 
 export default NextAuth({
@@ -23,8 +27,28 @@ export default NextAuth({
     GitHubProvider({
       clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
       clientSecret: process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET
+    }),
+    // TwitterProvider({
+    //   clientId: process.env.NEXT_PUBLIC_TWITTER_CLIENT_ID,
+    //   clientSecret: process.env.NEXT_PUBLIC_TWITTER_CLIENT_SECRET
+    // }),
+    GoogleProvider({
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET
+    }),
+    FacebookProvider({
+      clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET
+    }),
+    Auth0Provider({
+      clientId: process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_AUTH0_CLIENT_SECRET,
+      issuer: process.env.NEXT_PUBLIC_AUTH0_ISSUER
     })
   ],
-  secret: []
+  pages: {
+    signIn: '/login/Login-custom'
+  },
+  secret: "secret"
 
 });
