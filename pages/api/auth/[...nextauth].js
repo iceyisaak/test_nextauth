@@ -6,6 +6,7 @@ import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import Auth0Provider from "next-auth/providers/auth0";
+import LinkedInProvider from "next-auth/providers/linkedin";
 import clientPromise from "../lib/mongodb";
 
 export default NextAuth({
@@ -39,6 +40,10 @@ export default NextAuth({
     FacebookProvider({
       clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
       clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET
+    }),
+    LinkedInProvider({
+      clientId: process.env.NEXT_PUBLIC_LINKEDIN_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_LINKEDIN_CLIENT_SECRET
     }),
     Auth0Provider({
       clientId: process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID,
