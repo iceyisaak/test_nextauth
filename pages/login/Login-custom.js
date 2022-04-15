@@ -1,6 +1,17 @@
+import { useState } from 'react';
 import { getProviders, signIn, getCsrfToken, getSession } from "next-auth/react";
 
 export default function SignIn({ csrfToken, providers }) {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState(null);
+
+  const signInUser = (e) => {
+    e.preventDefault();
+    console.log('email', 'password');
+  };
+
   return (
     <>
       <form method="post" action="/api/auth/signin/email">
@@ -11,6 +22,22 @@ export default function SignIn({ csrfToken, providers }) {
         </label>
         <button type="submit">Sign in with Email</button>
       </form>
+
+      <form action="">
+        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+        <label>
+          Email address
+          <input type="email" id="email" name="email" value={email} onChange={e => setEmail(e.target.value)} />
+        </label>
+        <label>
+          Password
+          <input type="password" id="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
+        </label>
+        <button onClick={(e) => signInUser(e)}>
+          Sign in with Email & Password
+        </button>
+      </form>
+
       {
         Object.values(providers).map((provider) => {
           if (provider.name === "Email") return;
