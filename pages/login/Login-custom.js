@@ -15,12 +15,14 @@ export default function SignIn({ csrfToken, providers }) {
     let options = { redirect: false, email, password };
     const res = await signIn("credentials", options);
     setMessage(null);
-    if (res?.error) setMessage(res.error);
+    if (res?.error) {
+      setMessage(res.error);
+      return;
+    }
     console.log(res);
     console.log(email, password);
-    // return router.push('/');
+    return router.push('/');
   };
-
 
   const signUpUser = async (e) => {
     e.preventDefault();
@@ -37,24 +39,25 @@ export default function SignIn({ csrfToken, providers }) {
     if (data.message === 'Registered Successfully!') {
       let options = { redirect: false, email, password };
       const res = await signIn("credentials", options);
-      // return router.push('/');
-
+      if (res?.error) setMessage(res.error);
+      return router.push('/');
     }
   };
 
 
+
   return (
     <>
-      <form method="post" action="/api/auth/signin/email">
+      {/* <form method="post" action="/api/auth/signin/email">
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <label>
           Email address
           <input type="email" id="email" name="email" />
         </label>
         <button type="submit">Sign in with Email</button>
-      </form>
+      </form> */}
 
-      <form action="">
+      <form >
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <label>
           Email address
@@ -69,8 +72,9 @@ export default function SignIn({ csrfToken, providers }) {
           Sign in with Email & Password
         </button>
         <button onClick={(e) => signUpUser(e)}>
-          Sign up with Email & Password
+          Register with Email & Password
         </button>
+
       </form>
 
       {
@@ -110,12 +114,3 @@ export async function getServerSideProps(context) {
     props: { csrfToken, providers },
   };
 }
-
-/*
-// If older than Next.js 9.3
-SignIn.getInitialProps = async (context) => {
-  return {
-    csrfToken: await getCsrfToken(context)
-  }
-}
-*/

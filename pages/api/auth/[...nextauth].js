@@ -51,6 +51,7 @@ export default NextAuth({
         if (user) return signInUser({ password, user });
       }
     }),
+
     GitHubProvider({
       clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
       clientSecret: process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET
