@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { getProviders, signIn, getCsrfToken, getSession } from "next-auth/react";
 
 export default function SignIn({ csrfToken, providers }) {
@@ -7,10 +8,40 @@ export default function SignIn({ csrfToken, providers }) {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState(null);
 
-  const signInUser = (e) => {
+  const router = useRouter();
+
+  const signInUser = async (e) => {
     e.preventDefault();
-    console.log('email', 'password');
+    let options = { redirect: false, email, password };
+    const res = await signIn("credentials", options);
+    setMessage(null);
+    if (res?.error) setMessage(res.error);
+    console.log(res);
+    console.log(email, password);
+    // return router.push('/');
   };
+
+
+  const signUpUser = async (e) => {
+    e.preventDefault();
+    setMessage(null);
+    const res = await fetch('/api/Register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    });
+    let data = await res.json();
+    if (data.message) setMessage(data.message);
+    if (data.message === 'Registered Successfully!') {
+      let options = { redirect: false, email, password };
+      const res = await signIn("credentials", options);
+      // return router.push('/');
+
+    }
+  };
+
 
   return (
     <>
@@ -33,17 +64,19 @@ export default function SignIn({ csrfToken, providers }) {
           Password
           <input type="password" id="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
         </label>
+        <p style={{ color: 'red' }}>{message}</p>
         <button onClick={(e) => signInUser(e)}>
           Sign in with Email & Password
+        </button>
+        <button onClick={(e) => signUpUser(e)}>
+          Sign up with Email & Password
         </button>
       </form>
 
       {
         Object.values(providers).map((provider) => {
-          if (provider.name === "Email") return;
-
+          if (provider.name === "Email" || provider.name === "Credentials") return;
           return (
-
             <div key={provider.name}>
               <button onClick={() => signIn(provider.id)}>
                 Sign in with {provider.name}

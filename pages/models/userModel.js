@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: 'guest'
   },
-  emai: {
+  email: {
     type: String
   },
   password: {

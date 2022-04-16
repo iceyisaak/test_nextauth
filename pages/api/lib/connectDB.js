@@ -5,7 +5,7 @@ const connectDB = () => {
     console.log('Mongoose connected.');
     return;
   }
-  mongoose.connect(process.env.MONGODB_URI, {}, err => {
+  mongoose.connect(process.env.NEXT_PUBLIC_MONGODB_URI, {}, err => {
     if (err) throw err;
     console.log('Connected to MongoDB');
   });

@@ -48,7 +48,7 @@ export default NextAuth({
         const password = credentials.password;
         const user = await Users.findOne({ email });
         if (!user) throw new Error("User not registered");
-        if (user) return siginInUser({ password, user });
+        if (user) return signInUser({ password, user });
       }
     }),
     GitHubProvider({
@@ -80,13 +80,14 @@ export default NextAuth({
   pages: {
     signIn: '/login/Login-custom'
   },
-  secret: "secret"
+  secret: "secret",
+  database: process.env.NEXT_PUBLIC_MONGODB_URI
 
 });
 
-const siginInUser = async ({ password, user }) => {
+const signInUser = async ({ password, user }) => {
   if (!user.password) throw new Error("Pls enter the password.");
-  const isMatch = await bcrypt.compare(password, user);
+  const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) throw new Error("Password or Username is incorrect.");
   return user;
 };

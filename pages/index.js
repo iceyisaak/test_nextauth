@@ -9,6 +9,9 @@ export default function Home() {
   const { data: session } = useSession();
   const router = useRouter();
 
+  // console.log(session.user);
+  console.log(session);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -33,6 +36,7 @@ export default function Home() {
                 <p>
                   Signed in as {session.user.email}
                 </p>
+                <img src={session.user.image} />
                 <br />
                 <button onClick={() => signOut()}>Sign out</button>
               </> :
@@ -44,13 +48,6 @@ export default function Home() {
                 <button onClick={() => signIn()}>Sign in</button>
               </>
           }
-
-          {/* <button onClick={() => router.push('login/Login')}>
-            Login
-          </button>
-          <button onClick={() => router.push('signup/SignUp')}>
-            Sign Up
-          </button> */}
 
         </div>
       </main>
