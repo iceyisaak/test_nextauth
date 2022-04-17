@@ -6,6 +6,8 @@ NextAuth v4:
   - Email Authentication (Passwordless Login)
   - Social Media Login
 - DB: MongoDB
+- With Custom Login Page
+  - With NextAuth, custom login URL is fixed on just 1 URL path (All login method must be able to fit on that page)
 
 ### Modules
 
