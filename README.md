@@ -2,7 +2,10 @@
 
 NextAuth v4:
 
-- Bcrypt + MongoDB
+- Authentication Method: Email & Password 
+- DB: MongoDB
+- Custom Login Page used (Fixed to 1 URL path by default)
+- Bcrypt used (hash & salt password)
 
 ### Modules
 
