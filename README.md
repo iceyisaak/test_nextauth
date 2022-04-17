@@ -2,7 +2,9 @@
 
 NextAuth v4:
 
-Modules
+- Bcrypt + MongoDB
+
+### Modules
 
 - Authentication
   - Sign In
@@ -10,10 +12,7 @@ Modules
     - With Social Media
   - Sign Out
   - Sign Up
-  - Forgot Password
   
-
-
 
 ## Getting Started
 
