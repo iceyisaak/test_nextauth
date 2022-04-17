@@ -2,15 +2,24 @@
 
 NextAuth v4:
 
-Modules
+- Authentication Method: 
+  - Email Authentication (Passwordless Login)
+  - Social Media Login
+- DB: MongoDB
+
+### Modules
 
 - Authentication
   - Sign In
-    - With Email & Password
+    - With Email Authentication (Passwordless Login)
     - With Social Media
+      - Facebook
+      - Github
+      - Google
+      - LinkedIn
+      - Auth0
   - Sign Out
   - Sign Up
-  - Forgot Password
   
 
 
