@@ -2,15 +2,16 @@
 
 NextAuth v4:
 
-Modules
+- Method: Email Authentication (Passwordless Login)
+- DB: Firebase
+
+
+### Modules
 
 - Authentication
   - Sign In
-    - With Email & Password
     - With Social Media
   - Sign Out
-  - Sign Up
-  - Forgot Password
   
 
 
